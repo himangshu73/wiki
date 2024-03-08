@@ -1,4 +1,5 @@
 from django.shortcuts import render,redirect
+from django.views.decorators.http import require_POST
 
 from . import util
 
@@ -35,5 +36,19 @@ def search(request):
         })
     
 def new_page(request):
-    return render(request,'encyclopedia/new_page.html')    
+    return render(request,'encyclopedia/new_page.html')   
 
+@require_POST
+def save_new_page(request):
+    if request.method == "POST":
+        post_title = request.POST.get('post_title').upper()
+        post_description = request.POST.get('post_description')
+        if util.get_entry(post_title):
+            return render(request, 'encyclopedia/new_page.html',{'error':'Page with this title already exist.'})
+        if post_title and post_description:
+            util.save_entry(post_title,post_description)
+            return redirect('index')
+        else:
+            return render(request,'encyclopedia/new_page.html',{'error':'Title and description are required'})
+    else:
+        return redirect('new_page')    

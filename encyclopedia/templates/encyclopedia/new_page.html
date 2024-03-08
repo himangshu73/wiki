@@ -7,12 +7,16 @@
 {% block body %}
     
     <h2>Enter Title</h2>
-    <form>
+    {% if error %}
+        {{ error }}
+    {% endif %}    
+    <form method="post" action="{% url 'save_new_page' %}">
+        {% csrf_token %}
         <input type="text" name="post_title" placeholder="Title">
         <h2>Enter Description</h2>
         <textarea name="post_description"></textarea>
         <br>
-        <button type="button">Save</button>
+        <button type="submit">Save</button>
     </form>
     
 
