@@ -47,7 +47,7 @@ def save_new_page(request):
             return render(request, 'encyclopedia/new_page.html',{'error':'Page with this title already exist.'})
         if post_title and post_description:
             util.save_entry(post_title,post_description)
-            return redirect('index')
+            return redirect('new_page')
         else:
             return render(request,'encyclopedia/new_page.html',{'error':'Title and description are required'})
     else:
