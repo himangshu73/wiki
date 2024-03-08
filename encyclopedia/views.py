@@ -51,4 +51,12 @@ def save_new_page(request):
         else:
             return render(request,'encyclopedia/new_page.html',{'error':'Title and description are required'})
     else:
-        return redirect('new_page')    
+        return redirect('new_page')  
+
+def edit_page(request,title):
+    entry_content = util.get_entry(title)
+    if request.method == "POST":
+        new_content = request.POST.get('post_description')
+        util.save_entry(title,new_content)
+        return redirect('page',title=title)
+    return render(request,'encyclopedia/edit_page.html',{'title':title,'entry_content':entry_content})          

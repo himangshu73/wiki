@@ -7,5 +7,6 @@ urlpatterns = [
     path("wiki/<str:title>/",views.page, name="page"),
     path("search/",views.search, name="search"),
     path("new_page/",views.new_page,name="new_page"),
-    path("save_new_page/",views.save_new_page,name="save_new_page")
+    path("save_new_page/",views.save_new_page,name="save_new_page"),
+    path("edit/<str:title>/",views.edit_page,name="edit_page")
 ]

@@ -7,5 +7,7 @@
 {% block body %}
     
     {{title_description}}
+    <br>
+    <a href="{% url 'edit_page' title=title%}">Edit Page</a>
 
 {% endblock %}

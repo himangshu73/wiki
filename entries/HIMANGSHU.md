@@ -1,1 +1,1 @@
-this is my name
+what's up buddy! This is a new life for me and you. Let's life it up.
