@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect
 from django.views.decorators.http import require_POST
-
+import random
 from . import util
 
 
@@ -60,3 +60,8 @@ def edit_page(request,title):
         util.save_entry(title,new_content)
         return redirect('page',title=title)
     return render(request,'encyclopedia/edit_page.html',{'title':title,'entry_content':entry_content})          
+
+def random_page(request):
+    entries = util.list_entries()
+    random_entry = random.choice(entries)
+    return redirect('page',title=random_entry)
